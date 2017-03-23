@@ -1,0 +1,63 @@
+@import '../../stylesheets/core.less';
+.content {
+    min-height: 6.5rem;
+    background: transparent;
+    border: none;
+    .sign-up {
+        width: 7rem;
+        margin: 0 auto;
+        border: 1px solid #e7e7e7;
+        border-radius: 0.1rem;
+        background-color: rgba(248, 248, 248, .6);
+        text-align: center;
+        padding: 0 0.1rem;
+        font-size: 0.18rem;
+        margin-top: 1rem;
+        .error-massage {
+            height: 0.28rem;
+            width: 100%;
+        }
+        .corporateUser-position {
+            top: 0.15rem;
+        }
+        .user-type-position {
+            position: relative;
+            top: -0.1rem;
+            left: 0.1rem;
+            .user-type {
+                width: 30%;
+                text-align: center;
+                label {
+                    text-align: left;
+                    input {
+                        top: 0rem;
+                    }
+                }
+            }
+        }
+        .posts-type {
+            width: 30%;
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+            &.active {
+                color: #fff;
+                background-color: #5bc0de;
+                border-color: #46b8da;
+            }
+        }
+        p {
+            margin: 0.05rem 0 0.1rem;
+        }
+    }
+    ul,li {
+        margin: 0.1rem;
+        text-align: left;
+    }
+    input {
+        text-align: left;
+    }
+    .btn {
+        width: 100%;
+    }
+}

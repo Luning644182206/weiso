@@ -1,0 +1,62 @@
+template(name="signUp")
+  div.container
+      div.content(id="main")
+        div.sign-up
+          h2 WeiSo 新起点 新启点！
+          div
+            ul
+              li
+                label(for="loginNumber") 账 号
+                input.form-control(type="email" id="loginNumber" placeholder="xxx@xx.com")
+              li
+                label(for="passWord") 密 码
+                input.form-control(type="password" id="passWord" placeholder="请输入登录密码")
+              li
+                label(for="form-control") 密保问题
+                select.form-control.secretQuestions
+                  each questions
+                    option(value="{{question}}") {{question}}
+                label(for="secretAnswer") 密保答案
+                input.form-control(type="text" id="secretAnswer" placeholder="请输入密保答案")
+              li.clearfix
+                span.fl
+                  label 用户类型
+                span.user-type-position
+                  span.radio.user-type.fl
+                    label 个人用户
+                      input.fl.individualUser(type="radio" name="optionsRadios" id="optionsRadios1" value="individualUser" checked)
+                  span.radio.user-type.fl.ml-80.corporateUser-position
+                    label 企业用户
+                      input.corporateUser(type="radio" name="optionsRadios" id="optionsRadios2" value="corporateUser")
+              li.forIndividualUser
+                span.fl
+                  label 向我推荐
+                span.tc.ml-10
+                  button.btn.posts-type.internship.active(type="button") 实习生岗位
+                  button.btn.posts-type.ml-80.full-time(type="button") 全职岗位
+              li.forCorporateUser.hide
+                label 公司地址
+                li.clearfix
+                  span.fl
+                    select.form-control.provinces
+                      each provinces
+                        option(value="{{name}}") {{name}}
+                  span.fl.ml-10
+                    p 省
+                  span.fl.ml-10
+                    select.form-control.municipalities
+                      each municipalities.value
+                        option(value="{{name}}") {{name}}
+                  span.fl.ml-10
+                    p 市
+                  span.fl.ml-10
+                    p 详情地址
+                  span.fl.ml-10
+                    input.form-control.address(type="text" id="secretAnswer" placeholder="公司详细地址")
+              li
+                button.btn.btn-primary.submit(type="submit") 注册
+
+
+
+
+

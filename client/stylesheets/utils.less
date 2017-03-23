@@ -1,0 +1,56 @@
+/** utils class */
+.generate-usual(100);
+.generate-usual(@n, @i: 10) when (@i =< @n) {
+  .mt-@{i} { margin-top: (@i + 0px) !important; }
+  .mb-@{i} { margin-bottom: (@i + 0px) !important; }
+  .ml-@{i} { margin-left: (@i + 0px) !important; }
+  .mr-@{i} { margin-right: (@i + 0px) !important; }
+
+  .pt-@{i} { padding-top: (@i + 0px) !important; }
+  .pb-@{i} { padding-bottom: (@i + 0px) !important; }
+  .pl-@{i} { padding-left: (@i + 0px) !important; }
+  .pr-@{i} { padding-right: (@i + 0px) !important; }
+  .wd-@{i} { width: (@i + 0px) !important; }
+  .hg-@{i} { height: (@i + 0px) !important; }
+
+  .generate-usual(@n, (@i + 10));
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Utility classes
+.clearfix {
+  .cfx();
+}
+
+/*
+ * clearfix
+ */
+
+.cfx() {
+    zoom: 1;
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+ul,li {
+    list-style: none;
+    margin: 0rem;
+    padding: 0;
+}
+.tc {
+  text-align: center !important;
+}
