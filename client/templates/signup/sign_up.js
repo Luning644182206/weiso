@@ -144,7 +144,8 @@ Template.signUp.events({
                     passWord,
                     secretQuestion,
                     secretAnswer,
-                    recommendType
+                    recommendType,
+                    userType
                 };
                 Meteor.call('creatNewAccount', userType, data, function(error ,result) {
                     if (error) {
@@ -170,7 +171,8 @@ Template.signUp.events({
                     secretQuestion,
                     secretAnswer,
                     province,
-                    city
+                    city,
+                    userType
                 };
                 Meteor.call('creatNewAccount', userType, data, function(error ,result) {
                     if (error) {
