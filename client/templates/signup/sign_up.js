@@ -50,6 +50,10 @@ function checkError (type) {
     return isPass;
 };
 
+Template.signUp.onCreated(function() {
+    Session.set('SignUpErrors', {});
+});
+
 Template.signUp.helpers({
     questions: function() {
         return SecretQuestions.find();// 密保问题
@@ -66,10 +70,6 @@ Template.signUp.helpers({
     errorClass: function (field) {
         return Session.get('SignUpErrors')[field] ? 'has-error' : '';
     }
-});
-
-Template.signUp.onCreated(function() {
-    Session.set('SignUpErrors', {});
 });
 
 Template.signUp.events({
@@ -146,12 +146,17 @@ Template.signUp.events({
                     secretAnswer,
                     recommendType
                 };
-                // let a = IndividualUsers.insert(data);
-                // console.log(a);
-            }
-            else {
-                throwError('所有选项都为必填哦，请填写完成后再试！');
-                return;
+                Meteor.call('creatNewAccount', userType, data, function(error ,result) {
+                    if (error) {
+                        throwError(error.reason);
+                    };
+                    if (result.success) {
+                        Router.go('/success');
+                    }
+                    else {
+                        throwError(result.massage);
+                    }
+                });
             }
         }
         else {
@@ -166,34 +171,20 @@ Template.signUp.events({
                     secretAnswer,
                     province,
                     city
-                }
-                // let a = CorporateUsers.insert(data);
-                // console.log(a);
+                };
+                Meteor.call('creatNewAccount', userType, data, function(error ,result) {
+                    if (error) {
+                        throwError(error.reason);
+                    };
+                    if (result.success) {
+                        Router.go('/success');
+                    }
+                    else {
+                        throwError(result.massage);
+                    }
+                });
+                
             }
-            else {
-                throwError('所有选项都为必填哦，请填写完成后再试！');
-                return;
-            }
-            
         }
     }
 });
-
-// e.preventDefault();
-
-// var post = {
-//   url: $(e.target).find('[name=url]').val(),
-//   title: $(e.target).find('[name=title]').val()
-// };
-
-// Meteor.call('postInsert', post, function(error, result) {
-//   // 向用户显示错误信息并终止
-//   if (error)
-//     return alert(error.reason);
-
-//   // 显示结果，跳转页面
-//   if (result.postExists)
-//     alert('This link has already been posted（该链接已经存在）');
-
-//   Router.go('postPage', {_id: result._id});
-// });
