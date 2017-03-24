@@ -6,18 +6,24 @@ template(name="signUp")
           div
             ul
               li
-                label(for="loginNumber") 账 号
-                input.form-control(type="email" id="loginNumber" placeholder="xxx@xx.com")
+                div(class="form-group {{errorClass 'loginNumber'}}")
+                  label(for="loginNumber") 账 号
+                  input.form-control(type="email" id="loginNumber" placeholder="xxx@xx.com")
+                  span.help-block {{errorMessage 'loginNumber'}}
               li
-                label(for="passWord") 密 码
-                input.form-control(type="password" id="passWord" placeholder="请输入登录密码")
+                div(class="form-group {{errorClass 'passWord'}}")
+                  label(for="passWord") 密 码
+                  input.form-control(type="password" id="passWord" placeholder="请输入登录密码")
+                  span.help-block {{errorMessage 'passWord'}}
               li
                 label(for="form-control") 密保问题
                 select.form-control.secretQuestions
                   each questions
                     option(value="{{question}}") {{question}}
-                label(for="secretAnswer") 密保答案
-                input.form-control(type="text" id="secretAnswer" placeholder="请输入密保答案")
+                div(class="form-group {{errorClass 'secretAnswer'}}")
+                  label(for="secretAnswer") 密保答案
+                  input.form-control(type="text" id="secretAnswer" placeholder="请输入密保答案")
+                  span.help-block {{errorMessage 'secretAnswer'}}
               li.clearfix
                 span.fl
                   label 用户类型
@@ -51,8 +57,9 @@ template(name="signUp")
                     p 市
                   span.fl.ml-10
                     p 详情地址
-                  span.fl.ml-10
+                  span.fl.ml-10(class="form-group {{errorClass 'address'}}")
                     input.form-control.address(type="text" id="secretAnswer" placeholder="公司详细地址")
+                    span.help-block {{errorMessage 'address'}}
               li
                 button.btn.btn-primary.submit(type="submit") 注册
 

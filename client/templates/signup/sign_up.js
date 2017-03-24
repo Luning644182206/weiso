@@ -8,22 +8,48 @@
 let self = this;
 let userType = 'individualUser';// 默认为个人用户
 let recommendType = 'internship';// 默认选择为实习生
+let msg = {
+    EMAILREGEXP: /^(\w)+(\.\w+)*@(\w)+((\.\w{2,5}){1,3})$/
+};
 import utils from '../../helper/utils.js';
 
 function checkError (type) {
-    let isPass = false;
-    let loginNumber = $('#loginNumber').val();
-    let passWord = $('#passWord').val();
-    let secretAnswer = $('#secretAnswer').val();
-    isPass = (loginNumber && passWord && secretAnswer) ? true : false;
+    let isPass = true;
+    let errors = {};
+    let loginNumber = {
+        value: $('#loginNumber').val(),
+        name: 'loginNumber'
+    };
+    let passWord = {
+        value: $('#passWord').val(),
+        name: 'passWord'
+    };
+    let secretAnswer = {
+        value: $('#secretAnswer').val(),
+        name: 'secretAnswer'
+    };
+    let checkData = [loginNumber, passWord, secretAnswer];
     if (type === 'corporateUser') {
-        let address = $('.address').val();
-        isPass = (isPass && address) ? true : false;
+        let address = {
+            value: $('.address').val(),
+            name: 'address'
+        };
+        checkData.push(address);
     }
-    
-    console.log(isPass);
+    _.forEach(checkData, function(data){
+        if (!data.value) {
+            errors[data.name] = '此项不能为空或格式不正确！';
+            isPass = false;
+        }
+        if (data.name === 'loginNumber' && data.value) {
+            isPass = msg.EMAILREGEXP.test(data.value);
+            isPass ? '' : errors[data.name] = '此项不能为空或格式不正确！';
+        }
+    });
+    Session.set("SignUpErrors", errors);
     return isPass;
 };
+
 Template.signUp.helpers({
     questions: function() {
         return SecretQuestions.find();// 密保问题
@@ -33,7 +59,17 @@ Template.signUp.helpers({
     },
     municipalities: function() {
         return Municipalities.findOne({"name": '北京'});// 市
+    },
+    errorMessage: function(field) {
+        return Session.get('SignUpErrors')[field];
+    },
+    errorClass: function (field) {
+        return Session.get('SignUpErrors')[field] ? 'has-error' : '';
     }
+});
+
+Template.signUp.onCreated(function() {
+    Session.set('SignUpErrors', {});
 });
 
 Template.signUp.events({
@@ -114,7 +150,8 @@ Template.signUp.events({
                 // console.log(a);
             }
             else {
-                alert('所有选项都为必填哦，请填写完成后再试！');
+                throwError('所有选项都为必填哦，请填写完成后再试！');
+                return;
             }
         }
         else {
@@ -134,7 +171,8 @@ Template.signUp.events({
                 // console.log(a);
             }
             else {
-                alert('所有选项都为必填哦，请填写完成后再试！');
+                throwError('所有选项都为必填哦，请填写完成后再试！');
+                return;
             }
             
         }
