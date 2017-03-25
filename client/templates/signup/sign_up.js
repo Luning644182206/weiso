@@ -46,7 +46,7 @@ function checkError (type) {
             isPass ? '' : errors[data.name] = '此项不能为空或格式不正确！';
         }
     });
-    Session.set("SignUpErrors", errors);
+    Session.set('SignUpErrors', errors);
     return isPass;
 };
 

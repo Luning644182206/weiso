@@ -1,7 +1,19 @@
 template(name="header")
   header.navbar.navbar-default(role="navigation")
-    div.container
-      ul
-        li
-          span.navbar-header.fl
-            a.navbar-brand(href="/") WeiSo
+    .container
+      .row
+        .col-md-1
+          a.navbar-brand(href="/") WeiSo
+        .col-md-10(class="{{loginState 'isLogin'}}")
+        .col-md-1.header-info(class="{{loginState 'isLogin'}}")
+          a(href="/signin") 登录/
+          a(href="/signup") 注册
+        .col-md-9(class="{{loginState 'notLogin'}}")
+        .col-md-1.header-info(class="{{loginState 'notLogin'}}")
+          a 个人中心
+        .col-md-1.header-info.ellipsis(class="{{loginState 'notLogin'}}")
+          a.user-name
+  .logout
+    .container
+      .logout-btn.fr.hide
+        p 退出登录
