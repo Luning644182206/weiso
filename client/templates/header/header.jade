@@ -4,15 +4,18 @@ template(name="header")
       .row
         .col-md-1
           a.navbar-brand(href="/") WeiSo
-        .col-md-10(class="{{loginState 'isLogin'}}")
-        .col-md-1.header-info(class="{{loginState 'isLogin'}}")
-          a(href="/signin") 登录/
-          a(href="/signup") 注册
-        .col-md-9(class="{{loginState 'notLogin'}}")
-        .col-md-1.header-info(class="{{loginState 'notLogin'}}")
-          a 个人中心
-        .col-md-1.header-info.ellipsis(class="{{loginState 'notLogin'}}")
-          a.user-name
+        .col-md-11
+          .col-md-12(class="{{loginState 'isLogin'}}")
+            .col-md-10
+            .col-md-2.header-info.not-login
+              a(href="/signin") 登录/
+              a(href="/signup") 注册
+          .col-md-12(class="{{loginState 'notLogin'}}")
+            .col-md-10
+            .col-md-1.header-info
+              a 个人中心
+            .col-md-1.header-info.ellipsis
+              a.user-name
   .logout
     .container
       .logout-btn.fr.hide

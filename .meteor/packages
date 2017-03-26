@@ -26,7 +26,6 @@ less
 iron:router
 sacha:spin
 mquandalle:jade
-akryum:vue-component
 akryum:vue-jade
 akryum:vue-coffee
 akryum:vue-less
