@@ -34,7 +34,12 @@ function checkError (type) {
             value: $('.address').val(),
             name: 'address'
         };
+        let companyName = {
+            value: $('.company-name').val(),
+            name: 'companyName'
+        }
         checkData.push(address);
+        checkData.push(companyName);
     }
     _.forEach(checkData, function(data){
         if (!data.value) {
@@ -165,6 +170,7 @@ Template.signUp.events({
                 let province = $('.provinces').val();
                 let city = $('.municipalities').val();
                 let address = $('.address').val();
+                let companyName = $('.company-name').val();
                 let data = {
                     loginNumber,
                     passWord,
@@ -172,7 +178,8 @@ Template.signUp.events({
                     secretAnswer,
                     province,
                     city,
-                    userType
+                    userType,
+                    companyName
                 };
                 Meteor.call('creatNewAccount', userType, data, function(error ,result) {
                     if (error) {

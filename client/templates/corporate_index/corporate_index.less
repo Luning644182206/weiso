@@ -1,0 +1,98 @@
+/**
+  * @file: WeiSo header less
+  * @author: luning@bjutra.com
+  * @date: 2017.03.25 11:08
+  *
+*/
+
+/* CSS declarations go here */
+@import '../../stylesheets/core.less';
+
+.menu-corp {
+    color: #2a384d;
+    .single {
+        padding: 0.15rem;
+        font-size: 0.18rem;
+        background: rgba(234, 234, 234, .9);
+        color: @gray-light;
+        border-left: 1px solid @gray-light;
+        border-top: 1px solid @gray-light;
+        border-right: 1px solid @gray-light;
+        border-bottom: 1px solid @gray-light;
+        border-radius: 5px 5px 0px 0px;
+        &.active {
+            color: @gray-darker;
+            background: rgba(248, 248, 248, 0.6);
+            border-bottom: rgba(248, 248, 248, 0.1) 1px solid;
+        }
+
+    }
+}
+.job {
+    width: 100%;
+    background: rgba(248, 248, 248, 0.6);
+    border-left: 1px solid @gray-light;
+    border-bottom: 1px solid @gray-light;
+    border-right: 1px solid @gray-light;
+    color: @gray-darker;
+    .job-list {
+        padding: 0.10rem;
+        .job-detail {
+            .job-name, .job-state {
+                font-size: 0.18rem;
+                line-height: 0.36rem;
+            }
+            .job-state {
+                text-align: right;
+                color: #2cbd2c;;
+            }
+            .job-time {
+                color: @gray-light;
+                font-size: 0.14rem;
+            }
+            .job-number {
+                color: #3388ff;
+                text-align: right;
+                cursor: pointer;
+            }
+            .job-option {
+                color: #3388ff;
+                text-align: left;
+                line-height: 0.36rem;
+                font-size: 0.14rem;
+
+            }
+        }
+    }
+}
+.add-new-job{
+    background: rgba(248, 248, 248, 0.6);
+    padding: 0.10rem;
+    font-size: 0.14rem;
+    color: @gray-darker;
+    .add-new-job-header {
+        background: #fff;
+        width: 100%;
+        border-radius: 5px 5px 5px 5px;
+        .new-job-name {
+            font-size: 0.14rem;
+            line-height: 0.56rem;
+        }
+        .new-job-company-name {
+            font-size: 0.18rem;
+            line-height: 0.36rem;
+            color: @gray-light;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

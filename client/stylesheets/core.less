@@ -1,6 +1,7 @@
 @import './utils.less';
 html {
     font-size: 100px;
+    color: #2a384d;
 }
 .hide {
     display: none;
@@ -15,4 +16,24 @@ html {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.card {
+    background: #fff;
+    padding: 0.1rem;
+    &:hover {
+        box-shadow: 4px 4px 16px rgba(39, 21, 102, 0.50);
+        transition: all 0.3s ease;
+        transform-style: flat;
+        z-index: 9;
+    }
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.btn-info {
+    background-color: #3388ff;
+}
+.container {
+    font-family: "Microsoft Yahei";
 }
