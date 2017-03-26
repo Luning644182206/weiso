@@ -10,11 +10,15 @@ template(name="header")
             .col-md-2.header-info.not-login
               a(href="/signin") 登录/
               a(href="/signup") 注册
-          .col-md-12(class="{{loginState 'notLogin'}}")
+          .col-md-12(class="{{loginState 'notLogin'}} {{userType 'individualUser'}}")
             .col-md-10
             .col-md-1.header-info
               a 个人中心
-            .col-md-1.header-info.ellipsis
+            .col-md-1.header-info.ellipsis.fr
+              a.user-name
+          .col-md-12(class="{{userType 'corporateUser'}}")
+            .col-md-11
+            .col-md-1.header-info.ellipsis.fr
               a.user-name
   .logout
     .container

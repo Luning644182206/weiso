@@ -9,11 +9,15 @@ import utils from '../../helper/utils.js';
 let logoutShow = false;
 Template.header.onCreated(function() {
     Session.set('loginState', {notLogin: 'notLogin'});
+    Session.set('headerUserType', {});
 });
 
 Template.header.helpers({
     loginState: function (field) {
         return Session.get('loginState')[field] ? 'hide' : '';
+    },
+    userType: function (field) {
+        return Session.get('headerUserType')[field] ? '' : 'hide';
     }
 });
 
@@ -28,7 +32,10 @@ setInterval(function () {
             };
             if (result.success) {
                 let userName = result.userInfo.userName || result.userInfo.loginNumber;
+                let type = {};
+                type[result.userInfo.userType] = '不想写又不能不写';
                 $('.user-name').text('Hi！' + userName);
+                Session.set('headerUserType', type);
                 Session.set('loginState', {isLogin: 'isLogin'});
             }
             else {
