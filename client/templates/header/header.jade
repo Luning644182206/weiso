@@ -16,7 +16,7 @@ template(name="header")
               a 个人中心
             .col-md-1.header-info.ellipsis.fr
               a.user-name
-          .col-md-12(class="{{userType 'corporateUser'}}")
+          .col-md-12(class="{{loginState 'notLogin'}} {{userType 'corporateUser'}}")
             .col-md-11
             .col-md-1.header-info.ellipsis.fr
               a.user-name

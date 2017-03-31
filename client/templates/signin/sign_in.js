@@ -66,13 +66,14 @@ Template.signIn.events({
                     throwError(error.reason);
                 };
                 if (result.success) {
-                    let cookieID = 'WEISOPASSPORT';
+                    let cookieID = 'WEISOID';
                     let IDValue = result.userInfo._id
                     let cookieUserType = 'userType';
                     let type = result.userInfo.userType;
                     utils.setCookie(cookieID, IDValue);
                     utils.setCookie(cookieUserType, type);
-                    Router.go('/');
+                    userType === 'individualUser' ? Router.go('/') : Router.go('/corporate');
+                    
                     // if (referrer) {
                     //     location.href = referrer;
                     // }

@@ -23,7 +23,7 @@ Template.header.helpers({
 
 // 解决加载时候的延时问题
 setInterval(function () {
-    let userID = utils.getCookie('WEISOPASSPORT');
+    let userID = utils.getCookie('WEISOID');
     let userType = utils.getCookie('userType');
     if (userID && userType) {
         Meteor.call('user', userType, userID, function(error ,result) {
@@ -60,7 +60,7 @@ Template.header.events({
         }
     },
     'click .logout-btn': function(e) {
-        utils.deleteCookie('WEISOPASSPORT');
+        utils.deleteCookie('WEISOID');
         utils.deleteCookie('userType');
         $('.logout-btn').addClass('hide');
         logoutShow = false;

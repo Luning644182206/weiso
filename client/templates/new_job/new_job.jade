@@ -1,0 +1,48 @@
+template(name="newJob")
+  .add-new-job
+    .add-new-job-header.card
+      .row
+        .col-md-2.new-job-name 职位名称
+        .col-md-4
+          .mt-10
+            input.form-control(type="email" id="loginNumber" placeholder="请输入职位名称")
+            //- span.help-block {{errorMessage 'loginNumber'}}
+      .row
+        .col-md-5.new-job-company-name 百度时代网络技术(北京)有限公司
+        .col-md-5
+        .col-md-2
+          .btn.btn-info 发布新职位
+    .add-new-job-detail.mt-20.card
+      .row
+        .col-md-2.desc-title 职位描述
+      .row.mt-20
+        .col-md-1 任职要求
+      .row.mt-10
+        .col-md-12
+          textarea.form-control(rows="3")
+      .row.mt-20
+        .col-md-1 工作类型:
+        .col-md-1
+          .btn.btn-info 实习
+        .col-md-1
+          .btn.btn-info 全职
+      .row.mt-20
+        .col-md-1 学历要求:
+        .col-md-2
+          .btn.btn-info 专科及以上
+        .col-md-2
+          .btn.btn-info 本科及以上
+        .col-md-2
+          .btn.btn-info 硕士及以上
+        .col-md-2
+          .btn.btn-info 博士及以上
+      .row.mt-20
+        .col-md-1 工作地点:
+        .col-md-1
+          div 北京
+        .col-md-1
+          div 北京
+        .col-md-3
+          div 北京市海淀区西北旺百度科技园
+        .col-md-1
+          div 更换

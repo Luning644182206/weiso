@@ -1,43 +1,12 @@
-template(name="corporateIndex")
+template(name="corporate")
   .container
     .row
       .menu-corp
-        .col-md-2.single.tc.active 已发布职位
-        .col-md-2.single.tc.ml-10 发布新职位
-    .job
-      .search
-        .row
-          .col-md-1.fr 一键刷新
-          .col-md-1.fr 搜索
-      .job-list
-        .card.mt-10.job-detail 
-          .row
-            .col-md-2.ellipsis.job-name 数据挖掘工程师
-            .col-md-1
-              a.job-option 投递情况
-            .col-md-1
-              a.job-option 编辑职位
-            .col-md-6
-            .col-md-2.job-state 正在进行
-          .row.pt-10.job-time
-            .col-md-1 发布时间:
-            .col-md-2 2017.2.25 21:15
-          .row
-            .col-md-1.job-time 结束时间:
-            .col-md-2.job-time 2017.4.6
-            .col-md-3
-            .col-md-2.job-number 未阅读 200
-            .col-md-2.job-number 感兴趣 50
-            .col-md-2.job-number 淘汰 300
-    .add-new-job
-      .add-new-job-header
-        .row
-          .col-md-1.new-job-name 职位名称
-          .col-md-4
-            div.mt-10
-              input.form-control(type="email" id="loginNumber" placeholder="请输入职位名称")
-              //- span.help-block {{errorMessage 'loginNumber'}}
-        .row
-          .col-md-5.new-job-company-name 百度时代网络技术(北京)有限公司
+        .col-md-2.single.tc.active.job-list 已发布职位
+        .col-md-2.single.tc.ml-10.new-job 发布新职位
+    div(class="{{hide 'jobList'}}")
+      +jobList
+    div(class="{{hide 'newJob'}}")
+      +newJob
 
 

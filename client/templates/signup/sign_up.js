@@ -55,6 +55,20 @@ function checkError (type) {
     return isPass;
 };
 
+function sendData(userType, data) {
+    Meteor.call('creatNewAccount', userType, data, function(error ,result) {
+        if (error) {
+            throwError(error.reason);
+        };
+        if (result.success) {
+            Router.go('/success');
+        }
+        else {
+            throwError(result.massage);
+        }
+    });
+};
+
 Template.signUp.onCreated(function() {
     Session.set('SignUpErrors', {});
 });
@@ -152,17 +166,7 @@ Template.signUp.events({
                     recommendType,
                     userType
                 };
-                Meteor.call('creatNewAccount', userType, data, function(error ,result) {
-                    if (error) {
-                        throwError(error.reason);
-                    };
-                    if (result.success) {
-                        Router.go('/success');
-                    }
-                    else {
-                        throwError(result.massage);
-                    }
-                });
+                sendData(userType, data);
             }
         }
         else {
@@ -181,18 +185,7 @@ Template.signUp.events({
                     userType,
                     companyName
                 };
-                Meteor.call('creatNewAccount', userType, data, function(error ,result) {
-                    if (error) {
-                        throwError(error.reason);
-                    };
-                    if (result.success) {
-                        Router.go('/success');
-                    }
-                    else {
-                        throwError(result.massage);
-                    }
-                });
-                
+                sendData(userType, data);
             }
         }
     }
