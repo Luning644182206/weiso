@@ -18,7 +18,6 @@ Template.corporate.helpers({
 
 Template.corporate.events({
     'click .job-list': function(e) {
-        console.log(Session);
         let data = {
             removeClassElement: '.new-job',
             removeClass: 'active',

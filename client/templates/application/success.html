@@ -1,0 +1,14 @@
+<template name="success">
+  <div class="errors">
+    {{#each success}}
+      {{> successInfo}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="successInfo">
+  <div class="alert error-alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+</template>

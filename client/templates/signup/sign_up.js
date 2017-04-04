@@ -183,7 +183,8 @@ Template.signUp.events({
                     province,
                     city,
                     userType,
-                    companyName
+                    companyName,
+                    address
                 };
                 sendData(userType, data);
             }

@@ -38,4 +38,19 @@
             font-size: 0.18rem;
         }
     }
+    .more {
+        color: @blue;
+        cursor: pointer;
+    }
+    .new-address {
+        transition: all .5s;
+        visibility: hidden;
+        opacity: 0;
+        &.active {
+            transition: all .5s;
+            visibility: visible;
+            opacity: 1;
+            
+        }
+    }
 }

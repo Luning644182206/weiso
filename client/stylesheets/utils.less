@@ -21,6 +21,9 @@
 @gray:         lighten(#000, 33.5%); // #555
 @gray-light:   lighten(#000, 46.7%); // #777
 @gray-lighter: lighten(#000, 93.5%); // #eee
+@white: #fff;
+@blue: #3388ff;
+@zindex-modal-mask: 10;
 
 .fl {
   float: left;
@@ -61,3 +64,37 @@ ul,li {
 .tc {
   text-align: center !important;
 }
+// 关于按钮的规范
+.btn-normal {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  &.active {
+    color: #fff;
+    background-color: @blue;
+    border-color: #46b8da;
+    &:hover {
+      background-color: #31b0d5;
+      border-color: #269abc;
+    }
+  }
+    
+}
+// 遮罩部分
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: @zindex-modal-mask;
+    left: 0px;
+    top: 0px;
+    background: rgb(255, 255, 255);
+    opacity: 0.4;
+}
+
+

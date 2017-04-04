@@ -37,6 +37,7 @@ setInterval(function () {
                 $('.user-name').text('Hi！' + userName);
                 Session.set('headerUserType', type);
                 Session.set('loginState', {isLogin: 'isLogin'});
+                Session.set('userInfo', result.userInfo);
             }
             else {
                 throwError(result.massage);

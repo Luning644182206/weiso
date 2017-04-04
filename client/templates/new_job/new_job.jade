@@ -4,45 +4,65 @@ template(name="newJob")
       .row
         .col-md-2.new-job-name 职位名称
         .col-md-4
-          .mt-10
-            input.form-control(type="email" id="loginNumber" placeholder="请输入职位名称")
-            //- span.help-block {{errorMessage 'loginNumber'}}
+          div(class="form-group {{errorClass 'jobName'}}")
+            input.form-control(type="text" id="jobName" placeholder="请输入职位名称")
+        .col-md-5
+          .help-block {{errorMessage 'jobName'}}
       .row
-        .col-md-5.new-job-company-name 百度时代网络技术(北京)有限公司
+        .col-md-5.new-job-company-name {{userInfo 'companyName'}}
         .col-md-5
         .col-md-2
-          .btn.btn-info 发布新职位
+          .btn.btn-info.submit 发布新职位
     .add-new-job-detail.mt-20.card
       .row
         .col-md-2.desc-title 职位描述
       .row.mt-20
         .col-md-1 任职要求
       .row.mt-10
-        .col-md-12
-          textarea.form-control(rows="3")
-      .row.mt-20
+        .col-md-12(class="form-group {{errorClass 'jobDesc'}}")
+          textarea.form-control(rows="3", id = "jobDesc")
+          span.help-block {{errorMessage 'jobDesc'}}
+      .row.mt-20.job-type
         .col-md-1 工作类型:
         .col-md-1
-          .btn.btn-info 实习
+          .btn.btn-normal(value="internship", class="{{jobTypeChoose 'internship'}}") 实习
         .col-md-1
-          .btn.btn-info 全职
-      .row.mt-20
+          .btn.btn-normal(value="fullTime", class="{{jobTypeChoose 'fullTime'}}") 全职
+      .row.mt-20.education
         .col-md-1 学历要求:
         .col-md-2
-          .btn.btn-info 专科及以上
+          .btn.btn-normal(value="college", class="{{educationChoose 'college'}}") 专科及以上
         .col-md-2
-          .btn.btn-info 本科及以上
+          .btn.btn-normal(value="bachelor", class="{{educationChoose 'bachelor'}}") 本科及以上
         .col-md-2
-          .btn.btn-info 硕士及以上
+          .btn.btn-normal(value="master", class="{{educationChoose 'master'}}") 硕士及以上
         .col-md-2
-          .btn.btn-info 博士及以上
+          .btn.btn-normal(value="doctor", class="{{educationChoose 'doctor'}}") 博士及以上
       .row.mt-20
         .col-md-1 工作地点:
-        .col-md-1
-          div 北京
-        .col-md-1
-          div 北京
+        .col-md-2
+          span.address-provinces {{userInfo 'province'}}
+          span.address-city {{userInfo 'city'}}
         .col-md-3
-          div 北京市海淀区西北旺百度科技园
+          .address-detail {{userInfo 'address'}}
         .col-md-1
-          div 更换
+          .more 更换
+      .row.mt-30.new-address.hide
+        .col-md-1 新的地址
+        .col-md-1
+          select.form-control.provinces
+            each provinces
+              option(value="{{name}}") {{name}}
+        .col-md-1
+          select.form-control.municipalities
+            each municipalities.value
+              option(value="{{name}}") {{name}}
+        .col-md-1 详情地址
+        .col-md-6(class="form-group {{errorClass 'address'}}")
+          input.form-control.address(type="text" placeholder="公司详细地址")
+          span.help-block {{errorMessage 'address'}}
+        .col-md-1
+          .btn.btn-info.save-address 保存
+        .col-md-1
+          .btn.btn-normal.cancel 取消
+

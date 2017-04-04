@@ -10,3 +10,4 @@ Provinces = new Mongo.Collection('provinces');// 省
 Municipalities = new Mongo.Collection('municipalitys');// 市
 IndividualUsers = new Mongo.Collection('individualUsers');// 个人用户
 CorporateUsers = new Mongo.Collection('corporateUsers');// 企业用户
+JobList = new Mongo.Collection('jobList');// 所有职位已添加的工作职位列表
