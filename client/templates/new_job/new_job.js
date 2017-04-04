@@ -43,7 +43,6 @@ Template.newJob.helpers({
 
 Template.newJob.events({
     'click .submit': function(e) {
-        console.log(Session.get('userInfo'));
         let jobName = {
             value: $('#jobName').val(),
             name: 'jobName'
