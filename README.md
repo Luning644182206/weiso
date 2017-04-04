@@ -1,5 +1,4 @@
-# weiso
-简易招聘网站
+# weiso简易招聘网站
 
 ### 接口文档
 #### creatNewAccount(创建新的账户)
