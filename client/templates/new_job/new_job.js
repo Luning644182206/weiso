@@ -10,11 +10,39 @@ let education = 'bachelor';
 let jobType = 'internship';
 let newProvinces = '';
 let newCity = '';
-
+let editJobID = '';
 Template.newJob.onCreated(function() {
     Session.set('newJobCheck', {});
     Session.set('education', {bachelor: 'bachelor'});
     Session.set('jobType', {internship: 'internship'});
+    Session.set('jobInfo', {show: ''});
+    editJobID = this.data;
+    if (editJobID) {
+        Session.set('jobInfo', {show: 'hide'});
+        let userID = utils.getCookie('WEISOID');
+        Meteor.setTimeout(function() {
+            Meteor.call('getCorporateJobList', userID, editJobID, function(error ,result) {
+                if (error) {
+                    throwError(error.reason);
+                };
+                if (result.success) {
+                    let job  = result.jobList;
+                    job.show = '';
+                    let jobTypeTemp = {};
+                    jobTypeTemp[job.jobType] = job.jobType;
+                    let educationTemp = {};
+                    educationTemp[job.education] = job.education;
+                    Session.set('jobInfo', job);
+                    Session.set('jobType', jobTypeTemp);
+                    Session.set('education', educationTemp);
+                    console.log(Session);
+                }
+                else {
+                    throwError(result.massage);
+                }
+            });
+        },100);
+    }
 });
 
 Template.newJob.helpers({
@@ -38,6 +66,10 @@ Template.newJob.helpers({
     },
     userInfo: function(field) {
         return Session.get('userInfo')[field];
+    },
+    jobInfo: function(field) {
+        // 编辑模式下使用此模板
+        return Session.get('jobInfo')[field];
     }
 });
 

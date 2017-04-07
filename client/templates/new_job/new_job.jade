@@ -1,18 +1,22 @@
 template(name="newJob")
-  .add-new-job
+  .add-new-job(class="{{jobInfo 'show'}}")
     .add-new-job-header.card
       .row
         .col-md-2.new-job-name 职位名称
         .col-md-4
           div(class="form-group {{errorClass 'jobName'}}")
-            input.form-control(type="text" id="jobName" placeholder="请输入职位名称")
+            input.form-control(type="text" id="jobName" placeholder="请输入职位名称", value="{{jobInfo 'jobName'}}")
         .col-md-5
           .help-block {{errorMessage 'jobName'}}
       .row
         .col-md-5.new-job-company-name {{userInfo 'companyName'}}
         .col-md-5
         .col-md-2
-          .btn.btn-info.submit 发布新职位
+          .btn.btn-info.submit 
+            if jobInfo '_id'
+              保存
+            else 
+              发布新职位
     .add-new-job-detail.mt-20.card
       .row
         .col-md-2.desc-title 职位描述
@@ -20,7 +24,7 @@ template(name="newJob")
         .col-md-1 任职要求
       .row.mt-10
         .col-md-12(class="form-group {{errorClass 'jobDesc'}}")
-          textarea.form-control(rows="3", id = "jobDesc")
+          textarea.form-control(rows="3", id = "jobDesc") {{jobInfo 'jobDesc'}}
           span.help-block {{errorMessage 'jobDesc'}}
       .row.mt-20.job-type
         .col-md-1 工作类型:
@@ -41,10 +45,22 @@ template(name="newJob")
       .row.mt-20
         .col-md-1 工作地点:
         .col-md-2
-          span.address-provinces {{userInfo 'province'}}
-          span.address-city {{userInfo 'city'}}
+          span.address-provinces
+            if jobInfo '_id'
+              {{jobInfo 'provinces'}}
+            else 
+              {{userInfo 'province'}}
+          span.address-city
+            if jobInfo '_id'
+              {{jobInfo 'city'}}
+            else 
+              {{userInfo 'city'}}
         .col-md-3
-          .address-detail {{userInfo 'address'}}
+          .address-detail
+            if jobInfo '_id'
+              {{jobInfo 'address'}}
+            else 
+              {{userInfo 'address'}}
         .col-md-1
           .more 更换
       .row.mt-30.new-address.hide
@@ -65,4 +81,3 @@ template(name="newJob")
           .btn.btn-info.save-address 保存
         .col-md-1
           .btn.btn-normal.cancel 取消
-
