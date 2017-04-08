@@ -5,8 +5,6 @@
   *
 */
 
-// getCorporateJobList: function('s5dhHYB7wobRrfrZ8')
-
 
 Template.jobList.onCreated(function() {
     Meteor.setTimeout(function() {
@@ -27,7 +25,6 @@ Template.jobList.onCreated(function() {
 
 Template.jobList.helpers({
     jobList: function() {
-        console.log(Session)
         return Session.get('corpJobList');
     }
 });

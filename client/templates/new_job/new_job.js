@@ -29,13 +29,14 @@ Template.newJob.onCreated(function() {
                     let job  = result.jobList;
                     job.show = '';
                     let jobTypeTemp = {};
-                    jobTypeTemp[job.jobType] = job.jobType;
                     let educationTemp = {};
+                    jobTypeTemp[job.jobType] = job.jobType;
                     educationTemp[job.education] = job.education;
                     Session.set('jobInfo', job);
                     Session.set('jobType', jobTypeTemp);
                     Session.set('education', educationTemp);
-                    console.log(Session);
+                    education = job.education;
+                    jobType = job.jobType;
                 }
                 else {
                     throwError(result.massage);
@@ -100,22 +101,44 @@ Template.newJob.events({
                 city,
                 address
             };
-            Meteor.call('creatNewJob', userType, userID, createJob, function(error ,result) {
-                if (error) {
-                    throwError(error.reason);
-                };
-                if (result.success) {
-                    throwSuccess(result.jobInfo.jobName + '职位发布成功！');
-                    setTimeout(function () {
-                        // 成功后强制刷新
-                        location.reload();
-                    },2000);
-                }
-                else {
-                    throwError(result.massage);
-                }
-            });
-            
+            if (editJobID) {
+                createJob._id = editJobID;
+                let dataForAPI = [
+                    createJob
+                ];
+                Meteor.call('updateJobInfo', userID, dataForAPI, function(error ,result) {
+                    if (error) {
+                        throwError(error.reason);
+                    };
+                    if (result.success) {
+                        throwSuccess('职位信息修改成功！正在返回职位列表请稍后！');
+                        setTimeout(function () {
+                            // 成功后强制刷新
+                            Router.go('/corporate');
+                        },2000);
+                    }
+                    else {
+                        throwError(result.massage);
+                    }
+                });
+            }
+            else{
+                Meteor.call('creatNewJob', userType, userID, createJob, function(error ,result) {
+                    if (error) {
+                        throwError(error.reason);
+                    };
+                    if (result.success) {
+                        throwSuccess(result.jobInfo.jobName + '职位发布成功！');
+                        setTimeout(function () {
+                            // 成功后强制刷新
+                            location.reload();
+                        },2000);
+                    }
+                    else {
+                        throwError(result.massage);
+                    }
+                });
+            }
         };
     },
     'click .education': function(e) {
