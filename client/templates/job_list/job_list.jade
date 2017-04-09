@@ -1,30 +1,37 @@
 template(name="jobList")
   .job
-    .search
-      .row
-        .col-md-1.fr 一键刷新
-        .col-md-1.fr 搜索
     .job-list
-      each jobList
-        .card.mt-10.job-detail
+      .have-job(class="{{ishow 'haveJob'}}")
+        .search
           .row
-            .col-md-2.ellipsis.job-name {{jobName}}
-            .col-md-1
-              a.job-option 投递情况
-            .col-md-1
-              a.job-option(href="/corporate/edit/{{_id}}") 编辑职位
-            .col-md-6
-            .col-md-2.job-state {{jobStatus}}
-          .row.pt-10.job-time
-            .col-md-1 发布时间:
-            .col-md-2 {{creatTime}}
-          .row
-            .col-md-1.job-time 结束时间:
-            .col-md-2.job-time {{endTime}}
-            .col-md-3
-            .col-md-2.job-number 未阅读 {{unread}}
-            .col-md-2.job-number 感兴趣 {{unread}}
-            .col-md-2.job-number 淘汰 {{eliminate}}
+            .col-md-1.fr 一键刷新
+            .col-md-1.fr 搜索
+        each jobList
+          .card.mt-10.job-detail
+            .row
+              .col-md-2.ellipsis.job-name {{jobName}}
+              .col-md-1
+                a.job-option 投递情况
+              .col-md-1
+                a.job-option(href="/corporate/edit/{{_id}}") 编辑职位
+              .col-md-6
+              if jobStatus
+                .col-md-2.job-state.open 正在进行
+              else
+                .col-md-2.job-state.closed 已结束
+            .row.pt-10.job-time
+              .col-md-1 发布时间:
+              .col-md-2 {{creatTime}}
+            .row
+              .col-md-1.job-time 结束时间:
+              .col-md-2.job-time {{endTime}}
+              .col-md-3
+              .col-md-2.job-number 未阅读 {{unread}}
+              .col-md-2.job-number 感兴趣 {{unread}}
+              .col-md-2.job-number 淘汰 {{eliminate}}
+      .no-job(class="{{ishow 'noJobs'}}")
+        .row
+          .col-md-12.tc  您还没有发布职位，请点击发布职位添加职位吧！
     
 
 

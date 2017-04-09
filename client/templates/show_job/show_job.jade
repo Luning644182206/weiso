@@ -1,0 +1,30 @@
+template(name="showJob")
+  .add-new-job(class="{{jobInfo 'show'}}")
+    .add-new-job-header.card
+      .row
+        .col-md-8.show-job-name {{jobInfo 'jobName'}}
+      .row
+        .col-md-5.new-job-company-name {{jobInfo 'company'}}
+        .col-md-5
+        .col-md-2
+          .btn.btn-info.submit 申请职位
+    .add-new-job-detail.mt-20.card
+      .row
+        .col-md-2.desc-title 职位描述
+      .row.mt-20
+        .col-md-1 任职要求:
+        .col-md-10
+          pre {{jobInfo 'jobDesc'}}
+      .row.mt-20.job-type
+        .col-md-1 工作类型:
+        .col-md-1 {{jobInfo 'jobType'}}
+      .row.mt-20.education
+        .col-md-1 学历要求:
+        .col-md-2 {{jobInfo 'education'}}
+      .row.mt-20
+        .col-md-1 工作地点:
+        .col-md-2
+          span.address-provinces {{jobInfo 'provinces'}}
+          span.address-city {{jobInfo 'city'}}
+        .col-md-3
+          .address-detail {{jobInfo 'address'}}

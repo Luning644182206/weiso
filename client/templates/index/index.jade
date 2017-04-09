@@ -1,24 +1,33 @@
 template(name="index")
-  div.login
-    h2 欢迎使用WeiSo(我是主页)
-    div.error-massage
-    div
-      ul
-        li
-          label(for="loginNumber") 账 号
-          input.form-control(type="email" id="loginNumber" placeholder="请输入您的账号")
-        li
-          label(for="passWord") 密 码
-          input.form-control(type="password" id="passWord" placeholder="请输入登录密码")
-        li.clearfix
-          span.radio.fl.ml-60
-            label 个人用户
-              input(type="radio" name="optionsRadios" id="optionsRadios1" value="individualUser" checked)
-          span.radio.fl.corporateUser.ml-20
-            label  企业用户
-              input(type="radio" name="optionsRadios" id="optionsRadios2" value="corporateUser")
-        li
-          button.btn.btn-primary(type="button") 登录
-          a(href="/signup")
-            button.btn.btn-link(type="button") 没有WeiSo账户？现在注册
-          button.btn.btn-link(type="button") 忘记密码？
+  .normal-index
+    .user-joblist
+      .row
+        .col-md-2.user-joblist-title 职位列表
+      each jobInfo
+        .card.mt-20
+          .job-name
+            .row
+              .col-md-10 {{jobName}}({{jobType}})
+              if jobStatus
+                .col-md-2.job-state.open 正在进行
+              else
+                .col-md-2.job-state.closed 已结束
+          .job-desc
+            .row
+              .col-md-1 职位描述:
+              .col-md-10.ellipsis {{jobDesc}}
+            .row
+              .col-md-1 工作城市:
+              .col-md-1 {{provinces}}
+              .col-md-1 {{city}}
+            .row
+              .col-md-1 招聘公司:
+              .col-md-11 {{company}}
+            .row
+              .col-md-1 学历要求:
+              .col-md-11 {{education}}
+            .row
+              .col-md-1 截止时间:
+              .col-md-10 {{endTime}}
+              .col-md-1
+                a.apply(href="/job/{{_id}}") 申请职位

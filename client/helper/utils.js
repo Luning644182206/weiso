@@ -44,5 +44,13 @@ utils.deleteCookie = function (name) {
     if(deleteCookie != null) {
         document.cookie = name + "=" + deleteCookie + ";expires=" + date.toGMTString(); 
     }
-} 
+}
+utils.transJobInfo = {
+    'fullTime': '全职',
+    'internship': '实习生',
+    'college': '专科及以上',
+    'bachelor': '本科及以上',
+    'master': '硕士研究生及以上',
+    'doctor': '博士研究生及以上'
+}
 module.exports = utils;

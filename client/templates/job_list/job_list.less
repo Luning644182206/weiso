@@ -21,7 +21,13 @@
             }
             .job-state {
                 text-align: right;
-                color: #2cbd2c;;
+                font-weight: 500;
+                &.open {
+                    color: @success;
+                }
+                &.closed {
+                    color: @fail;
+                }
             }
             .job-time {
                 color: @gray-light;
@@ -39,6 +45,11 @@
                 font-size: 0.14rem;
 
             }
+        }
+        .no-job {
+            height: 5rem;
+            font-size: .18rem;
+            padding-top: 2.5rem;
         }
     }
 }

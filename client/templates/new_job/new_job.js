@@ -91,10 +91,12 @@ Template.newJob.events({
             let address = $('.address-detail').text();
             let userID = utils.getCookie('WEISOID');
             let userType = utils.getCookie('userType');
+            let userCompany = $('.new-job-company-name').text();
             // throwSuccess
             let createJob = {
                 jobName: jobName.value,
                 jobDesc: jobDesc.value,
+                company: userCompany,
                 jobType,
                 education,
                 provinces,
