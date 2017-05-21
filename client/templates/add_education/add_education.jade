@@ -1,0 +1,33 @@
+template(name="addEducation")
+  .modal-desc
+    .add-education
+      .row
+        .col-md-2.school 学校
+        .col-md-7
+          div(class="form-group {{errorClass 'addEducationSchool'}}")
+            input.form-control(type="text" id="addEducationSchool" placeholder="请输入学校", value="")
+        .col-md-3.has-error {{errorMessage 'addEducationSchool'}}
+      .row
+        .col-md-2.business 专业
+        .col-md-7
+          div(class="form-group {{errorClass 'addEducationBusiness'}}")
+            input.form-control(type="text" id="addEducationBusiness" placeholder="请输入专业", value="")
+        .col-md-3.has-error {{errorMessage 'addEducationBusiness'}}
+      .row
+        .col-md-2.education 获得学位
+        .col-md-7
+          div(class="form-group {{errorClass 'addEducationEducation'}}")
+            input.form-control(type="text" id="addEducationEducation" placeholder="请输入学位", value="")
+        .col-md-3.has-error {{errorMessage 'addEducationEducation'}}
+      .row
+        .col-md-2.time-in 入学时间
+        .col-md-7
+          div(class="form-group {{errorClass 'addEducationtimeIn'}}")
+            input.form-control(type="text" id="addEducationtimeIn" placeholder="请输入入学时间", value="")
+        .col-md-3.has-error {{errorMessage 'addEducationtimeIn'}}
+      .row
+        .col-md-2.time-out 毕业时间
+        .col-md-7
+          div(class="form-group {{errorClass 'addEducationtimeOut'}}")
+            input.form-control(type="text" id="addEducationtimeOut" placeholder="请输入毕业时间", value="")
+        .col-md-3.has-error {{errorMessage 'addEducationtimeOut'}}

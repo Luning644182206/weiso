@@ -7,34 +7,38 @@
 
 import utils from '../../helper/utils.js';
 Template.corporate.onCreated(function() {
-    Session.set('optionHide', {newJob: 'true'});
+    let userType = utils.getCookie('userType');
+    if (!userType) {
+        Router.go('/signin' + '#' + location.href);
+    }
+    else {
+        if (userType === 'individualUser') {
+            throwError('个人用户不能访问此页面！请使用企业版用户登录！');
+            Session.set('corporateIndexHide', {container: 'userTypeError'});
+        }
+        else {
+            Session.set('corporateIndexHide', {newJob: 'true', jobList: 'true'});
+        }
+    }
 });
 
 Template.corporate.helpers({
     hide: function (field) {
-        return Session.get('optionHide')[field] ? 'hide' : '';
+        return Session.get('corporateIndexHide')[field] ? 'hide' : '';
+    },
+    active: function (field) {
+        return Session.get('corporateIndexHide')[field] ? '' : 'active';
     }
 });
 
 Template.corporate.events({
     'click .job-list': function(e) {
-        let data = {
-            removeClassElement: '.new-job',
-            removeClass: 'active',
-            addClassElement: '.job-list',
-            addClass: 'active'
-        };
-        utils.addRemoveClass(data);
-        Session.set('optionHide', {newJob: 'true'});
+        Session.set('corporateIndexHide', {newJob: 'true', consoleInfo: 'true'});
     },
     'click .new-job': function(e) {
-        let data = {
-            removeClassElement: '.job-list',
-            removeClass: 'active',
-            addClassElement: '.new-job',
-            addClass: 'active'
-        };
-        utils.addRemoveClass(data);
-        Session.set('optionHide', {jobList: 'true'});
+        Session.set('corporateIndexHide', {jobList: 'true', consoleInfo: 'true'});
+    },
+    'click .console-info': function(e) {
+        Session.set('corporateIndexHide', {newJob: 'true', jobList: 'true'});
     }
 });

@@ -1,0 +1,29 @@
+template(name="feedback")
+  .user-joblist
+    .row
+      .col-md-3.user-joblist-title 已投职位列表
+    each feedbackInfo
+      .card.mt-20
+        .job-name
+          .row
+            .col-md-10 {{jobName}}
+            .col-md-2.job-state.closed {{HRStateShow}}
+        .job-desc
+          .row
+            .col-md-1 职位描述:
+            .col-md-10.ellipsis {{jobDesc}}
+          .row
+            .col-md-1 工作城市:
+            .col-md-1 {{provinces}}
+            .col-md-1 {{city}}
+          .row
+            .col-md-1 招聘公司:
+            .col-md-11 {{company}}
+          .row
+            .col-md-1 学历要求:
+            .col-md-11 {{education}}
+          .row
+            .col-md-1 投递时间:
+            .col-md-10 {{applyTime}}
+            .col-md-1
+              .apply(value="{{feedbackID}}") 更改简历

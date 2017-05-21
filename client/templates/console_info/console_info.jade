@@ -1,0 +1,163 @@
+template(name="consoleInfo")
+  .console-info
+    div(class="{{Type 'individualUser'}}")
+      .card(class="{{show 'consoleInfo'}}")
+        .big-title 用户信息
+        .single-part
+          .row
+            .col-md-1
+              .small-title 姓名:
+            .col-md-2
+              .small-title {{userInfo 'userName'}}
+          .row
+            .col-md-1
+              .small-title 性别:
+            .col-md-2
+              .small-title {{userInfo 'sex'}}
+          .row
+            .col-md-1
+              .small-title 毕业院校:
+            .col-md-2
+              .small-title {{userInfo 'school'}}
+          .row
+            .col-md-1
+              .small-title 最高学历:
+            .col-md-2
+              .small-title {{userInfo 'education'}}
+          .row
+            .col-md-1
+              .small-title 联系方式:
+            .col-md-2
+              .small-title {{userInfo 'phone'}}
+          .row
+            .col-md-1
+              .small-title 邮箱:
+            .col-md-2
+              .small-title {{userInfo 'email'}}
+          .row
+            .col-md-1
+              .small-title 我的标签:
+            .col-md-2
+              .small-title {{userInfo 'recommendType'}}
+          .row
+            .col-md-11
+            .col-md-1
+              .btn-normal.active.small-btn.change-info 修改信息
+      .card(class="{{show 'changeInfo'}}")
+        .big-title 用户信息
+        .row.mt-10
+          .col-md-1
+            .small-title 姓名:
+          .col-md-2(class="{{errorClass 'userName'}}")
+            input.form-control(type="text" id="userName" placeholder="用户姓名" value="{{userInfo 'userName'}}")
+          .col-md-3
+            .help-block {{errorMessage 'userName'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 性别:
+          .col-md-1
+            select.form-control.sex
+                option(value="male") 男
+                option(value="female") 女
+        .row.mt-10
+          .col-md-1
+            .small-title 毕业学校:
+          .col-md-2(class="{{errorClass 'school'}}")
+            input.form-control(type="text" id="school" placeholder="毕业学校" value="{{userInfo 'school'}}")
+          .col-md-3
+            .help-block {{errorMessage 'school'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 最高学历:
+          .col-md-2(class="{{errorClass 'edcation'}}")
+            input.form-control(type="text" id="edcation" placeholder="最高学历" value="{{userInfo 'edcation'}}")
+          .col-md-3
+            .help-block {{errorMessage 'edcation'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 联系方式:
+          .col-md-2(class="{{errorClass 'phone'}}")
+            input.form-control(type="text" id="phone" placeholder="联系方式" value="{{userInfo 'phone'}}")
+          .col-md-3
+            .help-block {{errorMessage 'phone'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 邮箱:
+          .col-md-2(class="{{errorClass 'email'}}")
+            input.form-control(type="text" id="email" placeholder="邮箱" value="{{userInfo 'email'}}")
+          .col-md-3
+            .help-block {{errorMessage 'email'}}
+        .row.mt-10.job-type
+          .col-md-1
+            .small-title 我的标签:
+          .col-md-1
+            .btn-normal.small-btn(value="internship", class="{{jobTypeChoose 'internship'}}") 实习生
+          .col-md-1
+            .btn-normal.small-btn(value="fullTime", class="{{jobTypeChoose 'fullTime'}}") 全职
+        .row
+          .col-md-10
+          .col-md-1
+            .btn-normal.small-btn.cancel 取消
+          .col-md-1
+            .btn-normal.active.small-btn.save-change 保存
+      div(class="{{show 'noInfo'}}")
+        .big-title.mt-100 您还没有添加个人信息哦！
+        .btn-normal.mt-10.mb-100.active.small-btn.add-massge 添加信息
+    .card(class="{{Type 'corporateUser'}}")
+      div(class="{{show 'consoleInfo'}}")
+        .row
+          .col-md-5
+          .col-md-2
+            .big-title 企业信息
+        .row.mt-10
+          .col-md-1
+            .small-title 企业名称:
+          .col-md-2
+            .small-title {{userInfo 'companyName'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 企业地址:
+          .col-md-1
+            .small-title {{userInfo 'province'}}
+          .col-md-1
+            .small-title {{userInfo 'city'}}
+          .col-md-3
+            .small-title {{userInfo 'address'}}
+        .row
+          .col-md-11
+          .col-md-1
+            .btn-normal.active.small-btn.change-info 修改信息
+      div(class="{{show 'changeInfo'}}")
+        .row
+          .col-md-5
+          .col-md-2
+            .big-title 企业信息
+        .row.mt-10
+          .col-md-1
+            .small-title 企业名称:
+          .col-md-2(class="{{errorClass 'companyName'}}")
+            input.form-control(type="text" id="companyName" placeholder="企业名称" value="{{userInfo 'companyName'}}")
+          .col-md-3
+            .help-block {{errorMessage 'companyName'}}
+        .row.mt-10
+          .col-md-1
+            .small-title 企业地址:
+          .col-md-1
+            select.form-control.provinces
+              each provinces
+                option(value="{{name}}") {{name}}
+          .col-md-1
+            select.form-control.municipalities
+              each municipalities.value
+                option(value="{{name}}") {{name}}
+          .col-md-3(class="{{errorClass 'address'}}")
+            input.form-control(type="text" id="address" placeholder="企业详细地址" value="{{userInfo 'address'}}")
+          .col-md-3
+            .help-block {{errorMessage 'address'}}
+        .row
+          .col-md-10
+          .col-md-1
+            .btn-normal.small-btn.cancel 取消
+          .col-md-1
+            .btn-normal.active.small-btn.save-change 保存
+        

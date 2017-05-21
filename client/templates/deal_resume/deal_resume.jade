@@ -1,0 +1,95 @@
+template(name="dealResume")
+  .deal-resume
+    .row
+      .col-md-2.card
+        .row
+          .col-md-12.deal-resume-title.mb-10 投递人列表
+        each resumeList
+          .deal-resume-list-single
+            .row
+              .col-md-12 {{userName}}({{userSex}})
+            .row.mt-10
+              .col-md-12 {{userSchool}}
+        //- .deal-resume-list-single
+        //-   .row
+        //-     .col-md-12 廖赫(男)
+        //-   .row
+        //-     .col-md-12 北京工业大学
+        //- .deal-resume-list-single
+        //-   .row
+        //-     .col-md-12 邱硕(男)
+        //-   .row.mt-10
+        //-     .col-md-12 北京工业大学
+      .col-md-9.ml-10
+        .card
+          each resumeList
+            .row.mt-20
+              .col-md-2.big-title 基本信息
+            .row.mt-10
+              .col-md-2
+                .small-title 姓名
+              .col-md-2
+                .small-title {{name}}
+            .row.mt-10
+              .col-md-2
+                .small-title 性别
+              .col-md-2
+                .small-title {{sex}}
+            .row.mt-10
+              .col-md-2
+                .small-title 邮箱
+              .col-md-2
+                .small-title {{email}}
+            .row.mt-10
+              .col-md-2
+                .small-title 联系电话
+              .col-md-2
+                .small-title {{phone}}
+            .row.mt-10
+              .col-md-2
+                .small-title 应聘职位
+              .col-md-2
+                .small-title {{job}}
+            .row.mt-20.resume-education
+              .col-md-2
+                span.big-title.fl 教育背景
+            each educationExperience
+              .row.mt-10
+                .col-md-2.ellipsis {{schoolName}}
+                .col-md-2.ellipsis {{business}}
+                .col-md-2.ellipsis {{degree}}
+                .col-md-4.ellipsis {{startTime}}-{{endTime}}
+            .row.mt-20
+              .col-md-2
+                span.big-title 在校经历
+            each schoolExperience
+              .row.mt-10
+                .col-md-4.ellipsis {{organizeName}}
+                .col-md-2.ellipsis {{job}}
+                .col-md-4.ellipsis {{startTime}}-{{endTime}}
+            .row.mt-20
+              .col-md-2
+                span.big-title 实习经历
+            each workExperience
+              .row.mt-10
+                .col-md-4.ellipsis {{workCompany}}
+                .col-md-2.ellipsis {{workDetail}}
+                .col-md-4.ellipsis {{startTime}}-{{endTime}}
+            .row.mt-20
+              .col-md-2
+                span.big-title 曾获奖励
+            each rewardExperience
+              .row.mt-10
+                .col-md-4.ellipsis {{rewardName}}
+                .col-md-2.ellipsis {{rewardDetail}}
+                .col-md-4.ellipsis {{rewardTime}}
+        .card.mt-10
+          .row
+            .fl.deal-resume-btn.btn-normal 不合适
+            .fl.deal-resume-btn.btn-normal.ml-10 感兴趣
+            .fl.deal-resume-btn.btn-normal.ml-10 通知笔试
+            .fl.deal-resume-btn.btn-normal.ml-10 通知面试
+            .fl.deal-resume-btn.btn-normal.ml-10.active 签发offer
+
+          
+        

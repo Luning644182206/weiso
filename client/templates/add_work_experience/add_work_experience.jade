@@ -1,0 +1,26 @@
+template(name="workExperience")
+  .modal-desc
+    .row
+      .col-md-2.school 所在公司
+      .col-md-7
+        div(class="form-group {{errorClass 'workCompany'}}")
+          input.form-control(type="text" id="workCompany" placeholder="请输入所在公司", value="")
+      .col-md-3.has-error {{errorMessage 'workCompany'}}
+    .row
+      .col-md-2.business 工作内容
+      .col-md-7
+        div(class="form-group {{errorClass 'workDetail'}}")
+          input.form-control(type="text" id="workDetail" placeholder="请输入从事工作", value="")
+      .col-md-3.has-error {{errorMessage 'workDetail'}}
+    .row
+      .col-md-2.time-in 开始时间
+      .col-md-7
+        div(class="form-group {{errorClass 'workTimeIn'}}")
+          input.form-control(type="text" id="workTimeIn" placeholder="请输入开始时间", value="")
+      .col-md-3.has-error {{errorMessage 'workTimeIn'}}
+    .row
+      .col-md-2.time-out 结束时间
+      .col-md-7
+        div(class="form-group {{errorClass 'workTimeOut'}}")
+          input.form-control(type="text" id="workTimeOut" placeholder="请输入结束时间", value="")
+      .col-md-3.has-error {{errorMessage 'workTimeOut'}}

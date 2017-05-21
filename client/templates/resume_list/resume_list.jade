@@ -1,0 +1,18 @@
+template(name="resumeList")
+  .user-joblist
+    .row
+      a.btn-normal.small-btn.active.fr(href="/addresume") 添加简历
+    .row
+      each resumeList
+        .card.mt-10
+          .job-name
+            .row
+              .col-md-10 {{resumeName}}
+          .job-desc
+            .row
+              .col-md-1 创建时间:
+              .col-md-9 {{creatTime}}
+              .col-md-1
+                a.apply(href="/job/{{_id}}") 编辑
+              .col-md-1
+                a.apply(href="/job/{{_id}}") 删除

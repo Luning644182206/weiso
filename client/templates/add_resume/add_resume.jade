@@ -1,0 +1,69 @@
+template(name="addResume")
+  .add-resume
+    .card(id="new-resume")
+      .row
+        .col-md-1
+          .small-title 简历名称
+        .col-md-2(class="{{errorClass 'resumeName'}}")
+          input.form-control(type="text" id="resumeName" placeholder="请输入简历的名字")
+        .col-md-2
+          .help-block {{errorMessage 'resumeName'}}
+        .col-md-5
+        .col-md-2
+          .btn-normal.small-btn.active.fr.save 保存简历
+      .row.mt-20
+        .col-md-2.big-title 基本信息
+      .row.mt-10
+        .col-md-1
+          .small-title 姓名
+        .col-md-2(class="{{errorClass 'name'}}")
+          input.form-control(type="text" id="name" placeholder="请输入您的名字")
+        .col-md-2
+          .help-block {{errorMessage 'name'}}
+      .row.mt-10
+        .col-md-1
+          .small-title 性别
+        .col-md-2
+          select.sex
+            option.form-control(value="male") 男
+            option.form-control(value="famale") 女
+      .row.mt-10
+        .col-md-1
+          .small-title 邮箱
+        .col-md-2(class="{{errorClass 'email'}}")
+          input.form-control(type="email" id="email" placeholder="请输入您的邮箱")
+        .col-md-2
+          .help-block {{errorMessage 'email'}}
+      .row.mt-10
+        .col-md-1
+          .small-title 联系电话
+        .col-md-2(class="{{errorClass 'phone'}}")
+          input.form-control(type="text" id="phone" placeholder="请输入您的手机号")
+        .col-md-2
+          .help-block {{errorMessage 'phone'}}
+      .row.mt-10
+        .col-md-1
+          .small-title 应聘职位
+        .col-md-2(class="{{errorClass 'job'}}")
+          input.form-control(type="text" id="job" placeholder="请输入应聘职位")
+        .col-md-2
+          .help-block {{errorMessage 'job'}}
+      .row.mt-20.resume-education(id="resume-education")
+        .col-md-2
+          span.big-title.fl 教育背景
+          span.label.add.education +
+      .row.mt-20(id="resume-school-erp")
+        .col-md-2
+          span.big-title 在校经历
+          span.label.add.school-erp +
+      .row.mt-20(id="resume-work-erp")
+        .col-md-2
+          span.big-title 实习经历
+          span.label.add.work-erp +
+      .row.mt-20(id="resume-reward")
+        .col-md-2
+          span.big-title 曾获奖励
+          span.label.add.add-reward +
+      .row.mt-20(id="resume-end")
+      //- .row.mt-20
+      //-   .col-md-2.big-title 附件下载

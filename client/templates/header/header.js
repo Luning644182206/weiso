@@ -33,11 +33,14 @@ setInterval(function () {
             if (result.success) {
                 let userName = result.userInfo.userName || result.userInfo.loginNumber;
                 let type = {};
+                let userInfo = result.userInfo;
                 type[result.userInfo.userType] = '不想写又不能不写';
                 $('.user-name').text('Hi！' + userName);
+                userInfo.sex = utils.transJobInfo[userInfo.sex];
+                userInfo.recommendType = utils.transJobInfo[userInfo.recommendType];
                 Session.set('headerUserType', type);
                 Session.set('loginState', {isLogin: 'isLogin'});
-                Session.set('userInfo', result.userInfo);
+                Session.set('userInfo', userInfo);
             }
             else {
                 throwError(result.massage);
@@ -65,5 +68,6 @@ Template.header.events({
         utils.deleteCookie('userType');
         $('.logout-btn').addClass('hide');
         logoutShow = false;
+        Router.go('/');
     }
 });

@@ -11,10 +11,12 @@ template(name="jobList")
             .row
               .col-md-2.ellipsis.job-name {{jobName}}
               .col-md-1
-                a.job-option 投递情况
+                a.job-option(href="/dealResume/{{_id}}") 投递情况
               .col-md-1
                 a.job-option(href="/corporate/edit/{{_id}}") 编辑职位
-              .col-md-6
+              .col-md-1
+                .job-option.delete-job(value="{{_id}}/{{jobName}}") 删除职位
+              .col-md-5
               if jobStatus
                 .col-md-2.job-state.open 正在进行
               else
@@ -27,7 +29,7 @@ template(name="jobList")
               .col-md-2.job-time {{endTime}}
               .col-md-3
               .col-md-2.job-number 未阅读 {{unread}}
-              .col-md-2.job-number 感兴趣 {{unread}}
+              .col-md-2.job-number 感兴趣 {{intrest}}
               .col-md-2.job-number 淘汰 {{eliminate}}
       .no-job(class="{{ishow 'noJobs'}}")
         .row

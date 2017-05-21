@@ -1,12 +1,13 @@
 template(name="corporate")
-  .container
+  .container(class="{{hide 'container'}}")
     .row
       .menu-corp
-        .col-md-2.single.tc.active.job-list 已发布职位
-        .col-md-2.single.tc.ml-10.new-job 发布新职位
+        .col-md-2.single.tc.console-info(class="{{active 'consoleInfo'}}") 企业信息
+        .col-md-2.single.tc.ml-10.job-list(class="{{active 'jobList'}}") 已发布职位
+        .col-md-2.single.tc.ml-10.new-job(class="{{active 'newJob'}}") 发布新职位
+    div(class="{{hide 'consoleInfo'}}")
+      +consoleInfo
     div(class="{{hide 'jobList'}}")
       +jobList
     div(class="{{hide 'newJob'}}")
       +newJob
-
-

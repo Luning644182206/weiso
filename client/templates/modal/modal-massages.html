@@ -1,0 +1,19 @@
+<template name="modalMassages"> 
+  <div class="modal fade" id="modalMassages">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">WeiSo提示</h4>
+          </div>
+          <div class="modal-body modal-desc">
+            {{modalInfo 'massage'}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default modal-btn" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary modal-submit modal-btn">确定</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</template>

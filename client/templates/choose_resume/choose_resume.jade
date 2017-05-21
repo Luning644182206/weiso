@@ -1,0 +1,7 @@
+template(name="chooseResume")
+  .choose-resume
+    div 请选择一份简历进行投递:
+    .choose-resume-content.mt-10
+      select.form-control.resume
+        each resumeList
+          option(value="{{_id}}") {{resumeName}}

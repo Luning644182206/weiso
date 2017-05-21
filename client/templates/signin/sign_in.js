@@ -7,7 +7,6 @@
 
 let self = this;
 let userType = 'individualUser';// 默认为个人用户
-let referrer = document.referrer;
 import utils from '../../helper/utils.js';
 
 function checkError () {
@@ -34,6 +33,7 @@ function checkError () {
 };
 
 Template.signIn.onCreated(function() {
+    userType = 'individualUser';
     Session.set('SignInErrors', {});
 });
 
@@ -72,13 +72,15 @@ Template.signIn.events({
                     let type = result.userInfo.userType;
                     utils.setCookie(cookieID, IDValue);
                     utils.setCookie(cookieUserType, type);
-                    userType === 'individualUser' ? Router.go('/') : Router.go('/corporate');
-                    
-                    // if (referrer) {
-                    //     location.href = referrer;
-                    // }
-                    // else {
-                    // }
+                    let referrer = location.hash;
+                    if (referrer) {
+                        let referrerName = referrer.split('#');
+                        referrerName = referrerName[1];
+                        location.href = referrerName;
+                    }
+                    else {
+                        userType === 'individualUser' ? Router.go('/') : Router.go('/corporate');
+                    }
                 }
                 else {
                     throwError(result.massage);

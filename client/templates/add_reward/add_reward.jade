@@ -1,0 +1,20 @@
+template(name="addReward")
+  .modal-desc
+    .row
+      .col-md-2.school 奖项名称
+      .col-md-7
+        div(class="form-group {{errorClass 'rewardName'}}")
+          input.form-control(type="text" id="rewardName" placeholder="请输入奖项名称", value="")
+      .col-md-3.has-error {{errorMessage 'rewardName'}}
+    .row
+      .col-md-2.business 奖项描述
+      .col-md-7
+        div(class="form-group {{errorClass 'rewardDetail'}}")
+          input.form-control(type="text" id="rewardDetail" placeholder="请输入奖项描述", value="")
+      .col-md-3.has-error {{errorMessage 'rewardDetail'}}
+    .row
+      .col-md-2.time-in 获奖时间
+      .col-md-7
+        div(class="form-group {{errorClass 'rewardTime'}}")
+          input.form-control(type="text" id="rewardTime" placeholder="请输入获奖时间", value="")
+      .col-md-3.has-error {{errorMessage 'rewardTime'}}
