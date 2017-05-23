@@ -62,6 +62,7 @@ utils.transJobInfo = {
     'unsuited': '不合适',
     'face': '通知面试',
     'write': '通知笔试',
-    'offer': '签发offer'
+    'offer': '签发offer',
+    'intrest': 'HR感兴趣'
 }
 module.exports = utils;

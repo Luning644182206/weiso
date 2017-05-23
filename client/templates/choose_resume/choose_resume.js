@@ -8,20 +8,20 @@
 import utils from '../../helper/utils.js';
 Template.chooseResume.onCreated(function() {
     Session.set('resumeList', []);
-    Meteor.setTimeout(function() {
-        let userInfo = Session.get('userInfo');
-        Meteor.call('getResumes', userInfo._id, function(error ,result) {
-            if (error) {
-                throwError(error.reason);
-            };
-            if (result.success) {
-                Session.set('resumeList', result.resumeList);
-            }
-            else {
-                throwError(result.massage);
-            }
-        });
-    }, 500);
+    // Meteor.setTimeout(function() {
+    //     let userInfo = Session.get('userInfo');
+    //     Meteor.call('getResumes', userInfo._id, function(error ,result) {
+    //         if (error) {
+    //             throwError(error.reason);
+    //         };
+    //         if (result.success) {
+    //             Session.set('resumeList', result.resumeList);
+    //         }
+    //         else {
+    //             throwError(result.massage);
+    //         }
+    //     });
+    // }, 500);
 });
 
 Template.chooseResume.helpers({
@@ -32,12 +32,15 @@ Template.chooseResume.helpers({
 $(document).ready(function () {
     $('body').on('click', '.modal-footer .modal-submit', function (e) {
         if (Session.get('modal').chooseResume) {
+            let callback = Session.get('modal').callback;
             let modalData = {
                 resumeID: $('.resume').val(),
-                modalType: 'chooseResume'
+                modalType: 'chooseResume',
+                callback
             };
             Session.set('modalDataReturn', modalData);
             $('#myModal').modal('hide');
         }
+        Session.set('resumeList', []);
     });
 });

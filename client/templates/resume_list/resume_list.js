@@ -15,7 +15,7 @@ Template.resumeList.onCreated(function() {
                 throwError(error.reason);
             };
             if (result.success) {
-                Session.set('resumeList', result.resumeList);
+                Session.set('allResumeList', result.resumeList);
             }
             else {
                 throwError(result.massage);
@@ -26,6 +26,6 @@ Template.resumeList.onCreated(function() {
 
 Template.resumeList.helpers({
     resumeList: function() {
-        return Session.get('resumeList');
+        return Session.get('allResumeList');
     }
 });

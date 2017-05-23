@@ -43,15 +43,29 @@ Template.feedback.events({
         let $el = $(e.target);
         let value = $el.attr('value');
         feedbackID = value;
-        Session.set('modal', {chooseResume: 'chooseResume'});
-        let $modal = $('#myModal');
-        $('#myModal').modal();
+        Meteor.setTimeout(function() {
+            let userInfo = Session.get('userInfo');
+            Meteor.call('getResumes', userInfo._id, function(error ,result) {
+                if (error) {
+                    throwError(error.reason);
+                };
+                if (result.success) {
+                    Session.set('resumeList', result.resumeList);Session.set('modalDataReturn', {});
+                    Session.set('modal', {chooseResume: 'chooseResume', callback: 'feedback'});
+                    let $modal = $('#myModal');
+                    $('#myModal').modal();
+                }
+                else {
+                    throwError(result.massage);
+                }
+            });
+        }, 500);
     }
 });
 Tracker.autorun(function() {
   let modalData = Session.get('modalDataReturn') || {};
     if (_.keys(modalData).length) {
-        if (modalData.modalType === 'chooseResume') {
+        if (modalData.modalType === 'chooseResume' && modalData.callback === 'feedback') {
             let resumeID = modalData.resumeID;
             Meteor.call('changeApplyResume', feedbackID, resumeID, function(error ,result) {
                 if (error) {
@@ -66,7 +80,6 @@ Tracker.autorun(function() {
             });
         }
         feedbackID = '';
-        Session.set('modalDataReturn', {});
-        Session.set('modal', {});
+        // Session.set('modal', {});
     }
 });

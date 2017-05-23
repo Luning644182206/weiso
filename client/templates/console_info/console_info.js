@@ -56,7 +56,7 @@ Template.consoleInfo.helpers({
         return Provinces.find();// 省
     },
     municipalities: function() {
-        return Municipalities.findOne({"name": '北京'});// 市
+        return Municipalities.findOne({'name': '北京'});// 市
     },
     show: function(filed) {
         return Session.get('consoleInfoShow')[filed] ? '' : 'hide';

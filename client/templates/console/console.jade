@@ -1,12 +1,14 @@
 template(name="console")
-  .container
+  .container(class = "{{hide 'container'}}")
     .row
       .menu-corp
-        .col-md-2.single.tc 个人信息
-        .col-md-2.single.tc.ml-10 简历管理
-        .col-md-2.single.tc.ml-10.active 投递反馈
-    div
-      //- +addResume
-      //- +consoleInfo
-      //- +resumeList
+        .col-md-2.single.tc.console(class = "{{active 'console'}}") 个人信息
+        .col-md-2.single.tc.ml-10.manage-resume(class = "{{active 'manageResume'}}") 简历管理
+        .col-md-2.single.tc.ml-10.feedback(class = "{{active 'feedback'}}") 投递反馈
+    div(class = "{{hide 'console'}}")
+      +consoleInfo
+    div(class = "{{hide 'manageResume'}}")
+      +resumeList
+    div(class = "{{hide 'feedback'}}")
       +feedback
+      //- +addResume

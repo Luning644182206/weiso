@@ -11,3 +11,7 @@ Meteor.publish('JobList', function() {
 Meteor.publish('CorporateUsers', function() {
   return CorporateUsers.find();
 });
+
+Meteor.publish('SecretQuestions', function() {
+  return SecretQuestions.find();
+});

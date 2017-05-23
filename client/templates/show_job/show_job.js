@@ -55,9 +55,23 @@ Template.showJob.events({
             let canApply = false;
             userType === 'corporateUser' ? throwError('企业账户不能申请职位！') : canApply = true;
             if (canApply) {
-                Session.set('modal', {chooseResume: 'chooseResume'});
-                let $modal = $('#myModal');
-                $('#myModal').modal();
+                Meteor.setTimeout(function() {
+                    let userInfo = Session.get('userInfo');
+                    Meteor.call('getResumes', userInfo._id, function(error ,result) {
+                        if (error) {
+                            throwError(error.reason);
+                        };
+                        if (result.success) {
+                            Session.set('resumeList', result.resumeList);
+                            Session.set('modal', {chooseResume: 'chooseResume', callback: 'showJob'});
+                            let $modal = $('#myModal');
+                            $('#myModal').modal();
+                        }
+                        else {
+                            throwError(result.massage);
+                        }
+                    });
+                }, 500);
             }
         }
     }
@@ -65,7 +79,7 @@ Template.showJob.events({
 Tracker.autorun(function() {
   let modalData = Session.get('modalDataReturn') || {};
     if (_.keys(modalData).length) {
-        if (modalData.modalType === 'chooseResume') {
+        if (modalData.modalType === 'chooseResume' && modalData.callback === 'showJob') {
             let jobID = Session.get('showJob')._id;
             let resumeID = modalData.resumeID;
             let userID = Session.get('userInfo')._id;
