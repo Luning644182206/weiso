@@ -144,6 +144,12 @@ let changeHRState = function (state) {
         else if (state === 'intrest' && resumeList.HRState === 'intrest') {
             needChangeJob = false;
         }
+        else if (state === 'eliminate' && (resumeList.HRState === 'eliminate')) {
+            needChangeJob = false;
+        }
+        else if (state === 'intrest' && resumeList.HRState === 'intrest') {
+            needChangeJob = false;
+        }
         else {
             jobInfo[state] = jobInfo[state] + 1;
             needChangeJob = true;

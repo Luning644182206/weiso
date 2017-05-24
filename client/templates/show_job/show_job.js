@@ -53,7 +53,15 @@ Template.showJob.events({
         else {
             let userType = utils.getCookie('userType');
             let canApply = false;
+            let userInfo = Session.get('userInfo');
             userType === 'corporateUser' ? throwError('企业账户不能申请职位！') : canApply = true;
+            if (!userInfo.userName) {
+                canApply = false;
+                throwError('您没有完善个人信息，请完善后再试哦！');
+                setTimeout(function() {
+                    Router.go('/console');
+                }, 500);
+            }
             if (canApply) {
                 Meteor.setTimeout(function() {
                     let userInfo = Session.get('userInfo');

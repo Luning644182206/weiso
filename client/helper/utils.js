@@ -63,6 +63,7 @@ utils.transJobInfo = {
     'face': '通知面试',
     'write': '通知笔试',
     'offer': '签发offer',
-    'intrest': 'HR感兴趣'
+    'intrest': 'HR感兴趣',
+    'delete': '职位已删除'
 }
 module.exports = utils;

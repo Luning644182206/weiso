@@ -72,6 +72,10 @@ Template.signIn.events({
                     let type = result.userInfo.userType;
                     utils.setCookie(cookieID, IDValue);
                     utils.setCookie(cookieUserType, type);
+                    let userInfo = result.userInfo;
+                    userInfo.sex = utils.transJobInfo[userInfo.sex];
+                    userInfo.recommendType = utils.transJobInfo[userInfo.recommendType];
+                    Session.set('userInfo', userInfo);
                     let referrer = location.hash;
                     if (referrer) {
                         let referrerName = referrer.split('#');

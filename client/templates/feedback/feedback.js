@@ -10,6 +10,7 @@ let feedbackID = '';
 
 Template.feedback.onCreated(function() {
     feedbackID = '';
+    Session.set('feedbackShow', {notHaveFeed: 'true'});
     Meteor.setTimeout(function() {
         let userID = Session.get('userInfo')._id;
         Meteor.call('getFeedback', userID, function(error ,result) {
@@ -24,9 +25,12 @@ Template.feedback.onCreated(function() {
                     dataShow.push(data);
                 });
                 Session.set('feedbackInfo', dataShow);
+                Session.set('feedbackShow', {haveFeed: 'true'});
             }
             else {
-                throwError(result.massage);
+                if (result.errorCode !== 0) {
+                    throwError(result.massage);
+                }
             }
         });
     },500);
@@ -35,6 +39,9 @@ Template.feedback.onCreated(function() {
 Template.feedback.helpers({
     feedbackInfo: function(field) {
         return Session.get('feedbackInfo');
+    },
+    feedbackShow: function(field) {
+        return Session.get('feedbackShow')[field] ? '' : 'hide';
     }
 });
 

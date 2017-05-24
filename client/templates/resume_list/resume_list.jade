@@ -1,18 +1,23 @@
 template(name="resumeList")
   .user-joblist
-    .row
-      a.btn-normal.small-btn.active.fr(href="/addresume") 添加简历
-    .row
-      each resumeList
-        .card.mt-10
-          .job-name
-            .row
-              .col-md-10 {{resumeName}}
-          .job-desc
-            .row
-              .col-md-1 创建时间:
-              .col-md-9 {{creatTime}}
-              .col-md-1
-                a.apply(href="/job/{{_id}}") 编辑
-              .col-md-1
-                a.apply(href="/job/{{_id}}") 删除
+    .have-resume(class="{{haveResume 'haveResume'}}")
+      .row
+        a.btn-normal.small-btn.active.fr(href="/addresume") 添加简历
+      .row
+        each resumeList
+          .card.mt-10
+            .job-name
+              .row
+                .col-md-10 {{resumeName}}
+            .job-desc
+              .row
+                .col-md-1 创建时间:
+                .col-md-9 {{creatTime}}
+                .col-md-1
+                  a.apply(href="/job/{{_id}}") 编辑
+                .col-md-1
+                  a.apply(href="/job/{{_id}}") 删除
+    .no-resume(class="{{haveResume 'noResume'}}")
+      .big-title.mt-100.tc 您还没有添加简历哦！
+      .mt-20.tc.mb-100
+        a.btn-normal.small-btn.active.add-resume.mb-100(href="/addresume") 添加简历

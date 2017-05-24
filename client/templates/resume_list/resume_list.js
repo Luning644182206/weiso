@@ -8,6 +8,7 @@
 import utils from '../../helper/utils.js';
 Template.resumeList.onCreated(function() {
     Session.set('resumeList', []);
+    Session.set('HaveResumeList', {noResume: 'true'});
     Meteor.setTimeout(function() {
         let userInfo = Session.get('userInfo');
         Meteor.call('getResumes', userInfo._id, function(error ,result) {
@@ -16,9 +17,12 @@ Template.resumeList.onCreated(function() {
             };
             if (result.success) {
                 Session.set('allResumeList', result.resumeList);
+                Session.set('HaveResumeList', {haveResume: 'true'});
             }
             else {
-                throwError(result.massage);
+                if (result.errorCode !== 0) {
+                    throwError(result.massage);
+                }
             }
         });
     }, 500);
@@ -27,5 +31,8 @@ Template.resumeList.onCreated(function() {
 Template.resumeList.helpers({
     resumeList: function() {
         return Session.get('allResumeList');
+    },
+    haveResume: function(file) {
+        return Session.get('HaveResumeList')[file] ? '' : 'hide';
     }
 });

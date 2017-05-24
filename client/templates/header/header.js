@@ -34,7 +34,7 @@ setInterval(function () {
                 let userName = result.userInfo.userName || result.userInfo.loginNumber;
                 let type = {};
                 let userInfo = result.userInfo;
-                type[result.userInfo.userType] = '不想写又不能不写';
+                type[result.userInfo.userType] = result.userInfo.userType;
                 $('.user-name').text('Hi！' + userName);
                 userInfo.sex = utils.transJobInfo[userInfo.sex];
                 userInfo.recommendType = utils.transJobInfo[userInfo.recommendType];
@@ -50,6 +50,18 @@ setInterval(function () {
     else {
         Session.set('loginState', {notLogin: 'notLogin'});
     }
+    // let userInfo = Session.get('userInfo');
+    // if (_.keys(userInfo).length) {
+    //     let userName = userInfo.userName || userInfo.loginNumber;
+    //     let type = {};
+    //     type[userInfo.userType] = userInfo.userType;
+    //     $('.user-name').text('Hi！' + userName);
+    //     Session.set('headerUserType', type);
+    //     Session.set('loginState', {isLogin: 'isLogin'});
+    // }
+    // else {
+    //     Session.set('loginState', {notLogin: 'notLogin'});
+    // }
 },500);
 
 Template.header.events({
@@ -67,6 +79,7 @@ Template.header.events({
         utils.deleteCookie('WEISOID');
         utils.deleteCookie('userType');
         $('.logout-btn').addClass('hide');
+        Session.set('userInfo', {});
         logoutShow = false;
         Router.go('/');
     }
