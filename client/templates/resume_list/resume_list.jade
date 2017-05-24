@@ -16,7 +16,7 @@ template(name="resumeList")
                 .col-md-1
                   a.apply(href="/job/{{_id}}") 编辑
                 .col-md-1
-                  a.apply(href="/job/{{_id}}") 删除
+                  a.apply.delete(value="{{_id}}/{{resumeName}}") 删除
     .no-resume(class="{{haveResume 'noResume'}}")
       .big-title.mt-100.tc 您还没有添加简历哦！
       .mt-20.tc.mb-100

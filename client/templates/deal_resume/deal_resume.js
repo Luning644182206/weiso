@@ -130,12 +130,16 @@ let changeHRState = function (state) {
         if (state === 'intrest' && resumeList.HRState === 'eliminate') {
             // 更改job信息中的状态
             jobInfo.intrest = jobInfo.intrest + 1;
-            jobInfo.eliminate = jobInfo.eliminate - 1;
+            if (jobInfo.eliminate > 0) {
+                jobInfo.eliminate = jobInfo.eliminate - 1;
+            }
             needChangeJob = true;
         }
         else if (state === 'eliminate' && resumeList.HRState === 'intrest') {
             jobInfo.eliminate = jobInfo.eliminate + 1;
-            jobInfo.intrest = jobInfo.intrest - 1;
+            if (jobInfo.intrest > 0) {
+                jobInfo.intrest = jobInfo.intrest - 1;
+            }
             needChangeJob = true;
         }
         else if (state === 'eliminate' && resumeList.HRState === 'eliminate') {
